@@ -2,3 +2,8 @@
 mode: train
 root: data/
 predefined_dataset: MNIST
+classes: ["normal", "abnormal"]
+max_samples: null
+batch_size: 32
+num_workers: 0
+device: cuda
