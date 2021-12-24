@@ -33,7 +33,7 @@ class Predict:
         fake_samples = []
         if isfile(path=filepath):
             # predict the file
-            sample = self.loader(fp=filepath)
+            sample = self.loader(fp=filepath).convert(self.color_space)
             # the transformed sample dimension is (1, in_chans, freq, time)
             sample = self.transform(sample)[None]
             if self.device == 'cuda' and torch.cuda.is_available():
