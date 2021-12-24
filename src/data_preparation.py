@@ -112,13 +112,6 @@ if __name__ == '__main__':
     # project parameters
     project_parameters = ProjectParameters().parse()
 
-    #
-    train_dataset = MyMNIST(root='data/MNIST',
-                            train=True,
-                            transform=None,
-                            target_transform=None,
-                            download=False)
-
     # create datamodule
     datamodule = create_datamodule(project_parameters=project_parameters)
 
