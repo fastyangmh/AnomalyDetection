@@ -29,7 +29,7 @@ class PredictGUI(BasePredictGUI):
         # matplotlib canvas
         # this is Tkinter default background-color
         facecolor = (0.9254760742, 0.9254760742, 0.9254760742)
-        figsize = np.array([12, 4]) * project_parameters.in_chans
+        figsize = np.array([12, 4])
         self.image_canvas = FigureCanvasTkAgg(Figure(figsize=figsize,
                                                      facecolor=facecolor),
                                               master=self.window)
