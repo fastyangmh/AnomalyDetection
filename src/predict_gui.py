@@ -2,7 +2,7 @@
 from src.project_parameters import ProjectParameters
 from DeepLearningTemplate.predict_gui import BasePredictGUI
 from src.predict import Predict
-from PIL import Image, ImageTk
+from PIL import Image
 from DeepLearningTemplate.data_preparation import parse_transforms
 from tkinter import messagebox
 import numpy as np
@@ -67,16 +67,20 @@ class PredictGUI(BasePredictGUI):
         sample = self.transform(sample)
         # the sample dimension is (in_chans, width, height)
         sample = sample.cpu().data.numpy()
-        # convert the sample dimension to (width, height, in_chans)
-        sample = sample.transpose(1, 2, 0)
         # the fake_sample dimension is (1, in_chans, width, height),
         # so use 0 index to get the first fake_sample
         fake_sample = fake_sample[0]
-        # convert the fake_sample dimension to (width, height, in_chans)
-        fake_sample = fake_sample.transpose(1, 2, 0)
+        if sample.shape[0] == 1:
+            # delete channels axis, so the dimension is (width, height)
+            cmap = 'gray'
+            sample = sample[0]
+            fake_sample = fake_sample[0]
+        else:
+            # transpose the dimension to (width, height, in_chans)
+            cmap = None
+            sample = sample.transpose(1, 2, 0)
+            fake_sample = fake_sample.transpose(1, 2, 0)
         diff = np.abs(sample - fake_sample)
-        # set the cmap as gray if the sample only has 1 channel
-        cmap = 'gray' if sample.shape[2] == 1 else None
         rows, cols = 1, 3
         title = ['real', 'fake', 'diff']
         for idx in range(1, rows * cols + 1):
