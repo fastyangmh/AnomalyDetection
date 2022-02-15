@@ -1,7 +1,7 @@
 # parameters configuration
 mode: train
 root: data/
-predefined_dataset: MNIST
+predefined_dataset: CIFAR10
 classes: ["normal", "abnormal"]
 max_samples: null
 batch_size: 32
@@ -9,7 +9,7 @@ num_workers: 0
 device: cuda
 lr: 1e-3
 model_name: AE
-in_chans: 1
+in_chans: 3
 input_height: 64
 latent_dim: 256
 loss_function_name: MSELoss
@@ -21,7 +21,7 @@ default_root_dir: save/
 gpus: -1
 precision: 32
 max_epochs: 100
-color_space: L # (8-bit pixels, black and white)
+color_space: RGB # (8-bit pixels, black and white)
 threshold: null
 tuning_test: False
 cpu_resources_per_trial: 1
