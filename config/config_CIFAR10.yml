@@ -21,7 +21,7 @@ default_root_dir: save/
 gpus: -1
 precision: 32
 max_epochs: 100
-color_space: RGB # (8-bit pixels, black and white)
+color_space: RGB # (3x8-bit pixels, true color)
 threshold: null
 web_interface: True
 examples:
